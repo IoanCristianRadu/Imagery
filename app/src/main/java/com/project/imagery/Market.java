@@ -11,13 +11,13 @@ import android.widget.Toast;
 
 public class Market extends AppCompatActivity {
     ListView listaTimbre;
-    public static String[] web = {
-            "Timbra Canada",
-            "Timbra America",
-            "Timbra Italia",
-            "Timbra Washington",
-            "Timbra Statuia Libertatii",
-    } ;
+    public static String[] journalText = {
+            "Canadian stamp",
+            "American stamp",
+            "Italian stamp",
+            "Washington stamp",
+            "The Statue of Liberty stamp",
+    };
     public static Integer[] imageId = {
             R.drawable.timbra_canada,
             R.drawable.america,
@@ -31,24 +31,24 @@ public class Market extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
 
-        CustomList adapter = new CustomList(Market.this, web, imageId);
-        listaTimbre=(ListView)findViewById(R.id.listViewMarket);
+        CustomList adapter = new CustomList(Market.this, journalText, imageId);
+        listaTimbre = (ListView) findViewById(R.id.listViewMarket);
         listaTimbre.setAdapter(adapter);
         listaTimbre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(Market.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(Market.this,
+                        "You Clicked at " + journalText[+position], Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        Button checkCurrencies = (Button)findViewById(R.id.btn_check_currencies);
+        Button checkCurrencies = (Button) findViewById(R.id.btn_check_currencies);
         checkCurrencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(),CurrencyDisplay.class);
+                Intent it = new Intent(getApplicationContext(), CurrencyDisplay.class);
                 startActivity(it);
             }
         });

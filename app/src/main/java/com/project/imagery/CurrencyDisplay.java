@@ -9,24 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurrencyDisplay extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency_display);
 
-        CurrencyRequester currencyRequester = new CurrencyRequester() {
+        CurrencyControler currencyControler = new CurrencyControler() {
             @Override
             protected void onPostExecute(List<Currency> currencies) {
                 ListView listView = (ListView) findViewById(R.id.listViewCurrencyDisplay);
-                List<String> listaCurrencies = new ArrayList<>();
-                for (Currency c : currencies) {
-                    listaCurrencies.add(c.getName() + " : " + c.getValue());
+                List<String> displayCurrencies = new ArrayList<>();
+                for (Currency currency : currencies) {
+                    displayCurrencies.add(currency.getName() + " : " + currency.getValue());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listaCurrencies);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_list_item_1, displayCurrencies);
                 listView.setAdapter(adapter);
             }
         };
-        currencyRequester.execute();
+        currencyControler.execute();
     }
 }

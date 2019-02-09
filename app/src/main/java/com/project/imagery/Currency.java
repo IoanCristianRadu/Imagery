@@ -1,9 +1,5 @@
 package com.project.imagery;
 
-/**
- * Created by Cristi on 12/10/2016.
- */
-
 public class Currency {
     private String name;
     private double value;
