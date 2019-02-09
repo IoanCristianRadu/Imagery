@@ -8,12 +8,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.cristi.timblr.CurrencyDisplay"
+    tools:context="com.project.imagery.CurrencyDisplay"
     android:orientation="vertical">
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listViewCurrencyDisplay"
-        android:cacheColorHint="#FFFF"></ListView>
+        android:cacheColorHint="#FFFF">
+    </ListView>
 
 </LinearLayout>

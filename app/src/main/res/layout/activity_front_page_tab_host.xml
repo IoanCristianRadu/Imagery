@@ -4,16 +4,17 @@
     android:id="@+id/activity_front_page_tab_host"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cristi.timblr.FrontPageTabHost">
-
+    tools:context="com.project.imagery.FrontPageTabHost">
 
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:id="@android:id/tabhost">
 
         <LinearLayout
@@ -31,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </FrameLayout>
+
         </LinearLayout>
     </TabHost>
 </RelativeLayout>

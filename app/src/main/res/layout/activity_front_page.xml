@@ -8,30 +8,32 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.cristi.timblr.FrontPage"
+    tools:context="com.project.imagery.FrontPage"
     android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="430dp"
             android:id="@+id/listview_timbre">
         </ListView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="right">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/post"
                 android:id="@+id/btn_post"/>
+
         </LinearLayout>
-
     </LinearLayout>
-
-
 </ScrollView>

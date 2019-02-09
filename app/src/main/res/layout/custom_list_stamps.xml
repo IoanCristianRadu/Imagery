@@ -26,6 +26,7 @@
             android:orientation="vertical"
             android:layout_weight="0.85"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
                 android:text="name"
                 android:id="@+id/stamp_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,6 +42,7 @@
                 android:text="date + location"
                 android:id="@+id/stamp_info"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,20 +50,23 @@
                 android:text="state(mint/unused/used)"
                 android:id="@+id/stamp_condition"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
         </LinearLayout>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Description"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/stamp_description"
         android:layout_margin="10dp"
         android:text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis quis ipsum id maximus. Nulla mattis aliquam leo non vestibulum. Phasellus accumsan orci sed nunc pulvinar gravida. Integer vulputate nisi vel dui porta consectetur. Sed sagittis, leo quis sagittis interdum, velit diam tristique enim, quis viverra turpis erat et nibh. Pellentesque pretium quam et purus ultrices faucibus. Aenean tempus quis felis eu porttitor. Mauris consequat sem ut metus malesuada, a faucibus quam placerat. Nullam sit amet velit eget ante molestie rhoncus. Proin lectus risus, sagittis eget fermentum ut, blandit ut nibh."/>
-
 
 </LinearLayout>

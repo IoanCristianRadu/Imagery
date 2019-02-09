@@ -15,12 +15,12 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.cristi.timblr.AddPostActivity">
 
-
         <ImageView
             android:id="@+id/stampImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_margin="10dp"
             android:adjustViewBounds="true"
             app:srcCompat="@android:drawable/alert_dark_frame" />
@@ -31,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/textView4"
             android:layout_alignStart="@+id/stampImage"
+            android:layout_alignLeft="@+id/stampImage"
             android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:text="@string/Condition"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -40,8 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/stampImage"
             android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="29dp"
             app:srcCompat="@android:drawable/ic_menu_upload" />
 
@@ -51,8 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/uploadImage"
             android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
             android:layout_marginTop="14dp"
             android:layout_toStartOf="@+id/uploadImage"
+            android:layout_toLeftOf="@+id/uploadImage"
             android:text="@string/Upload"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -61,8 +67,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/uploadImage"
+            android:layout_alignRight="@+id/uploadImage"
             android:layout_below="@+id/stampImage"
             android:layout_toEndOf="@+id/stampImage"
+            android:layout_toRightOf="@+id/stampImage"
             android:entries="@array/Conditions" />
 
         <EditText
@@ -74,7 +82,9 @@
             android:layout_alignBaseline="@+id/textView6"
             android:layout_alignBottom="@+id/textView6"
             android:layout_alignEnd="@+id/editText"
-            android:layout_alignStart="@+id/editText" />
+            android:layout_alignRight="@+id/editText"
+            android:layout_alignStart="@+id/editText"
+            android:layout_alignLeft="@+id/editText"/>
 
         <EditText
             android:id="@+id/editText"
@@ -85,7 +95,9 @@
             android:layout_alignBaseline="@+id/textView4"
             android:layout_alignBottom="@+id/textView4"
             android:layout_alignEnd="@+id/spinner"
-            android:layout_alignStart="@+id/spinner" />
+            android:layout_alignRight="@+id/spinner"
+            android:layout_alignStart="@+id/spinner"
+            android:layout_alignLeft="@+id/spinner"/>
 
         <TextView
             android:id="@+id/textView7"
@@ -95,6 +107,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:layout_below="@+id/editText2"
             android:layout_alignStart="@+id/textView6"
+            android:layout_alignLeft="@+id/textView6"
             android:layout_marginTop="21dp" />
 
         <EditText
@@ -105,7 +118,8 @@
             android:inputType="textMultiLine"
             android:layout_marginTop="22dp"
             android:layout_below="@+id/textView7"
-            android:layout_alignStart="@+id/textView7" />
+            android:layout_alignStart="@+id/textView7"
+            android:layout_alignLeft="@+id/textView7"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -115,6 +129,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:layout_below="@+id/editText"
             android:layout_alignStart="@+id/textView4"
+            android:layout_alignLeft="@+id/textView4"
             android:layout_marginTop="19dp" />
 
         <TextView
@@ -125,7 +140,8 @@
             android:text="@string/Date"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:layout_below="@+id/spinner"
-            android:layout_alignStart="@+id/textView3" />
+            android:layout_alignStart="@+id/textView3"
+            android:layout_alignLeft="@+id/textView3"/>
 
         <Button
             android:id="@+id/btn_accept"
@@ -133,7 +149,8 @@
             android:layout_height="wrap_content"
             android:text="@string/Accept"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 </ScrollView>
