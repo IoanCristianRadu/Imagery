@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Timblr</string>
+    <string name="str_btn_login">Login</string>
+    <string name="Username">Username</string>
+    <string name="name">name</string>
+    <string name="Password">Password</string>
+    <string name="password">password</string>
+    <string name="Login">Login</string>
+    <string name="Description">Description</string>
+    <string name="Register">Register</string>
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="RegMessege">Please fill in the blanks to complete your registration:</string>
+    <string name="Back">Back</string>
+    <string name="RetypePassword">Retype password</string>
+    <string name="Accept">Accept</string>
+    <string name="Upload">Upload... :</string>
+    <string name="Condition">Condition</string>
+    <string name="Mint">Mint state</string>
+    <string name="Date">Date</string>
+    <string name="Origin">Origin</string>
+    <string name="SIGN_UP">SIGN UP</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="back">BACK</string>
+    <string name="retype_password">RETYPE PASSWORD</string>
+    <string name="password_signup">PASSWORD</string>
+    <string name="username">USERNAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="post">POST</string>
+    <string name="check_currencies">CHECK CURRENCIES</string>
+    <string-array name="Conditions">
+        <item>Mint condition</item>
+        <item>Unused</item>
+        <item>Used</item>
+    </string-array>
+</resources>
