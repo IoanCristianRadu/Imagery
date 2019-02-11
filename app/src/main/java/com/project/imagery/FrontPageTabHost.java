@@ -20,11 +20,11 @@ public class FrontPageTabHost extends TabActivity {
         TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");
 
         //Setting tab name and the activity it opens
-        tab1.setIndicator("Front page");
+        tab1.setIndicator("Journal");
         tab1.setContent(new Intent(this, FrontPage.class));
 
-        tab2.setIndicator("Market");
-        tab2.setContent(new Intent(this, Market.class));
+        tab2.setIndicator("New post");
+        tab2.setContent(new Intent(this, AddPostActivity.class));
 
         tab3.setIndicator("Account");
         tab3.setContent(new Intent(this, Login.class));

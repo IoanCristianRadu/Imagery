@@ -21,9 +21,6 @@ package="com.project.imagery">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".Market" />
     <activity android:name=".AddPostActivity"></activity>
-    <activity android:name=".CurrencyDisplay"></activity>
 </application>
-
 </manifest>

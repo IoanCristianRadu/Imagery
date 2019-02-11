@@ -22,8 +22,8 @@ public class CustomList extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater(); //context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.custom_list, null); //my error: R.layout.activity_front_page
+        LayoutInflater inflater = context.getLayoutInflater();
+        View rowView = inflater.inflate(R.layout.custom_list, null);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
 

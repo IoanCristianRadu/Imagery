@@ -31,7 +31,7 @@ public class FrontPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_front_page);
+        setContentView(R.layout.activity_journal);
 
         CustomList adapter = new CustomList(FrontPage.this, journalText, imageId);
         listaTimbre = (ListView) findViewById(R.id.listview_timbre);
@@ -43,14 +43,6 @@ public class FrontPage extends AppCompatActivity {
                                     int position, long id) {
                 Toast.makeText(FrontPage.this,
                         "You Clicked at " + journalText[+position], Toast.LENGTH_SHORT).show();
-            }
-        });
-        post = (Button) findViewById(R.id.btn_post);
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(), AddPostActivity.class);
-                startActivity(it);
             }
         });
     }
