@@ -15,21 +15,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class AddPostActivity extends AppCompatActivity {
+public class NewPostActivity extends AppCompatActivity {
     private ImageView stampImage;
-    private ImageButton uploadGallery;
-    private Button accept;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_post);
+        setContentView(R.layout.activity_new_post);
 
+        Button accept = (Button) findViewById(R.id.btn_post);
         stampImage = (ImageView) findViewById(R.id.stampImage);
-        uploadGallery = (ImageButton) findViewById((R.id.uploadImage));
-        accept = (Button) findViewById(R.id.btn_accept);
 
-        uploadGallery.setOnClickListener(new View.OnClickListener() {
+        stampImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK);

@@ -21,6 +21,6 @@ package="com.project.imagery">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".AddPostActivity"></activity>
+    <activity android:name=".NewPostActivity"></activity>
 </application>
 </manifest>

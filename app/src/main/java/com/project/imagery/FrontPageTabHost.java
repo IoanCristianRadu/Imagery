@@ -24,7 +24,7 @@ public class FrontPageTabHost extends TabActivity {
         tab1.setContent(new Intent(this, FrontPage.class));
 
         tab2.setIndicator("New post");
-        tab2.setContent(new Intent(this, AddPostActivity.class));
+        tab2.setContent(new Intent(this, NewPostActivity.class));
 
         tab3.setIndicator("Account");
         tab3.setContent(new Intent(this, Login.class));
