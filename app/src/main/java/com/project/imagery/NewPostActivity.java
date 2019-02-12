@@ -37,7 +37,7 @@ public class NewPostActivity extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 12/10/2016 ADD POST TO THE FrontPage
+                // TODO: 12/10/2016 ADD POST TO THE Journal
             }
         });
     }

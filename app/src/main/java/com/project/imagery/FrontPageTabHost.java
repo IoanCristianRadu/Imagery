@@ -21,7 +21,7 @@ public class FrontPageTabHost extends TabActivity {
 
         //Setting tab name and the activity it opens
         tab1.setIndicator("Journal");
-        tab1.setContent(new Intent(this, FrontPage.class));
+        tab1.setContent(new Intent(this, Journal.class));
 
         tab2.setIndicator("New post");
         tab2.setContent(new Intent(this, NewPostActivity.class));

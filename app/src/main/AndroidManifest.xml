@@ -10,14 +10,13 @@ package="com.project.imagery">
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".FrontPage" />
+    <activity android:name=".Journal" />
     <activity android:name=".Login" />
     <activity android:name=".AccountActivity" />
     <activity android:name=".RegisterAccount" />
     <activity android:name=".FrontPageTabHost">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
