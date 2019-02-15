@@ -11,21 +11,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class NewPostActivity extends AppCompatActivity {
-    private ImageView stampImage;
+    private ImageView selectedImage;
+    Uri selectedImageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
-        Button accept = (Button) findViewById(R.id.btn_post);
-        stampImage = (ImageView) findViewById(R.id.stampImage);
+        Button post = (Button) findViewById(R.id.btn_post);
+        selectedImage = (ImageView) findViewById(R.id.stampImage);
 
-        stampImage.setOnClickListener(new View.OnClickListener() {
+        selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK);
@@ -34,10 +35,14 @@ public class NewPostActivity extends AppCompatActivity {
             }
         });
 
-        accept.setOnClickListener(new View.OnClickListener() {
+        post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 12/10/2016 ADD POST TO THE Journal
+                //Bitmap bitmap = ((BitmapDrawable) selectedImage.getDrawable()).getBitmap();
+                Journal.addJournalPost(selectedImage,selectedImageUri);
+                //finish();
+                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
+                startActivity(i);
             }
         });
     }
@@ -53,7 +58,9 @@ public class NewPostActivity extends AppCompatActivity {
 
                 if (file_extn.equals("img") || file_extn.equals("jpg") || file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
                     Bitmap bm = BitmapFactory.decodeFile(filePath);
-                    stampImage.setImageBitmap(bm);
+                    //selectedImage.setImageBitmap(bm);
+                    selectedImageUri = selectedImage;
+                    this.selectedImage.setImageURI(selectedImage);
                 } else {
                     new Toast(getApplicationContext()).makeText(getApplicationContext(), "Not the expected file format", Toast.LENGTH_LONG).show();
                 }
