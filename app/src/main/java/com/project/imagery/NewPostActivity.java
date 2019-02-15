@@ -37,11 +37,16 @@ public class NewPostActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText title  = (EditText)findViewById(R.id.imageTitle);
-                EditText description = (EditText)findViewById(R.id.ET_description);
-                Journal.addJournalPost(selectedImage,selectedImageUri,title.getText().toString(),description.getText().toString());
-                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
-                startActivity(i);
+                if(selectedImageUri == null){
+                    new Toast(getApplicationContext()).makeText(getApplicationContext(),
+                            "No image selected", Toast.LENGTH_LONG).show();
+                } else{
+                    EditText title  = (EditText)findViewById(R.id.imageTitle);
+                    EditText description = (EditText)findViewById(R.id.ET_description);
+                    Journal.addJournalPost(selectedImage,selectedImageUri,title.getText().toString(),description.getText().toString());
+                    Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
+                    startActivity(i);
+                }
             }
         });
     }
@@ -54,11 +59,13 @@ public class NewPostActivity extends AppCompatActivity {
                 String filePath = getFilePathFromUri(selectedImage);
                 String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
 
-                if (file_extn.equals("img") || file_extn.equals("jpg") || file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
+                if (file_extn.equals("img") || file_extn.equals("jpg") ||
+                        file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
                     selectedImageUri = selectedImage;
                     this.selectedImage.setImageURI(selectedImage);
                 } else {
-                    new Toast(getApplicationContext()).makeText(getApplicationContext(), "Not the expected file format", Toast.LENGTH_LONG).show();
+                    new Toast(getApplicationContext()).makeText(getApplicationContext(),
+                            "Not the expected file format", Toast.LENGTH_LONG).show();
                 }
             }
         }
