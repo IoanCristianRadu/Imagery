@@ -14,22 +14,14 @@ import java.util.List;
 
 public class Journal extends AppCompatActivity {
     static List<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
-
     static String[] listviewTitle = new String[100];
-
-    /*
-    static int[] listviewImage = new int[]{
-            R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo
-    };*/
     static Uri[] imageUris = new Uri[100];
-
     static String[] listviewShortDescription = new String[100];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
-        //fillContentList();
 
         String[] from = {"listview_image", "listview_title", "listview_description"};
         int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
@@ -38,27 +30,16 @@ public class Journal extends AppCompatActivity {
         androidListView.setAdapter(simpleAdapter);
     }
 
-    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri){
+    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri,String title, String description){
         int index = contentList.size();
-        listviewTitle[index] = "ListView Title " + index;
+        listviewTitle[index] = title;
         imageUris[index] = selectedImageUri;
-        listviewShortDescription[index] = "Android ListView Short Description";
+        listviewShortDescription[index] = description;
         HashMap<String, String> hm = new HashMap<String, String>();
         hm.put("listview_title", listviewTitle[index]);
         hm.put("listview_description", listviewShortDescription[index]);
         hm.put("listview_image", imageUris[index].toString());
         contentList.add(hm);
     }
-
-    /*
-    private void fillContentList(){
-        for (int i = 0; i < listviewTitle.length; i++) {
-            HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("listview_title", listviewTitle[i]);
-            hm.put("listview_description", listviewShortDescription[i]);
-            hm.put("listview_image", Integer.toString(listviewImage[i]));
-            contentList.add(hm);
-        }
-    }*/
 }
 
