@@ -13,10 +13,10 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.project.imagery.NewPostActivity">
+        tools:context="com.project.imagery.EditJournalPost">
 
         <EditText
-            android:id="@+id/imageTitle"
+            android:id="@+id/editImageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -27,34 +27,34 @@
             android:gravity="center_horizontal" />
 
         <ImageView
-            android:id="@+id/stampImage"
+            android:id="@+id/editImage"
             android:layout_width="480dp"
             android:layout_height="270dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:adjustViewBounds="true"
-            android:layout_below="@+id/imageTitle"
+            android:layout_below="@+id/editImageTitle"
             app:srcCompat="@android:drawable/alert_light_frame" />
 
         <EditText
-            android:id="@+id/ET_description"
+            android:id="@+id/editImageDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textMultiLine"
             android:layout_marginTop="22dp"
-            android:layout_below="@+id/stampImage"
+            android:layout_below="@+id/editImage"
             android:layout_centerHorizontal="true"
             android:hint="Description"
             android:gravity="center_horizontal"/>
 
         <Button
-            android:id="@+id/btn_post"
+            android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/post"
-            android:layout_toRightOf="@id/ET_description"
-            android:layout_below="@id/stampImage"
+            android:text="@string/Edit"
+            android:layout_toRightOf="@id/editImageDescription"
+            android:layout_below="@id/editImage"
             android:layout_marginLeft="16dp"/>
     </RelativeLayout>
 </ScrollView>
