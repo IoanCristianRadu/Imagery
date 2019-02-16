@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.project.imagery.R;
-import com.project.imagery.classes.Helper;
+import com.project.imagery.classes.IndexHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +25,7 @@ public class Journal extends AppCompatActivity {
     static String[] journalPostTitle = new String[NUMBER_OF_POSTS];
     static Uri[] JournalPostImageUri = new Uri[NUMBER_OF_POSTS];
     static String[] JournalPostDescription = new String[NUMBER_OF_POSTS];
-    Helper helper;
+    IndexHelper indexHelper = IndexHelper.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class Journal extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Intent editPost = new Intent(getApplicationContext(), EditJournalPost.class);
-                int reversedIndex = helper.getReverseIndex().get(position);
+                int reversedIndex = indexHelper.getReverseIndex(journalPosts.size()).get(position);
                 String number = "" + reversedIndex;
                 editPost.putExtra("index", number);
                 startActivity(editPost);

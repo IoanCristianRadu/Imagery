@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.project.imagery.classes.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 import com.project.imagery.R;
 
@@ -58,29 +59,16 @@ public class NewPostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri selectedImage = data.getData();
-                String filePath = getFilePathFromUri(selectedImage);
-                String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
+                Uri uri = data.getData();
+                String[] projection = {MediaStore.MediaColumns.DATA};
+                Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                if (file_extn.equals("img") || file_extn.equals("jpg") ||
-                        file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
-                    selectedImageUri = selectedImage;
-                    this.selectedImage.setImageURI(selectedImage);
-                } else {
-                    new Toast(getApplicationContext()).makeText(getApplicationContext(),
-                            "Not the expected file format", Toast.LENGTH_LONG).show();
-                }
+                selectedImageUri = FilePathHelper.stuff(data,cursor);
+                selectedImage.setImageURI(selectedImageUri);
+            } else {
+                new Toast(getApplicationContext()).makeText(getApplicationContext(),
+                        "Not the expected file format", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public String getFilePathFromUri(Uri uri) throws NullPointerException {
-        String[] projection = {MediaStore.MediaColumns.DATA};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-        cursor.moveToFirst();
-        String imagePath = cursor.getString(column_index);
-        cursor.close();
-        return imagePath;
     }
 }

@@ -13,12 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.project.imagery.classes.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 import com.project.imagery.R;
 
 public class EditJournalPost extends AppCompatActivity {
-    Uri uri;
-    ImageView editImage;
+    Uri selectedImageUri;
+    ImageView selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,11 @@ public class EditJournalPost extends AppCompatActivity {
 
         final EditText editTitle = (EditText) findViewById(R.id.editImageTitle);
         final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
-        editImage = (ImageView) findViewById(R.id.editImage);
+        selectedImage = (ImageView) findViewById(R.id.editImage);
 
         editTitle.setText(Journal.journalPostTitle[index]);
         editDescription.setText(Journal.JournalPostDescription[index]);
-        editImage.setImageURI(Journal.JournalPostImageUri[index]);
+        selectedImage.setImageURI(Journal.JournalPostImageUri[index]);
 
         Button edit = (Button) findViewById(R.id.editButton);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -42,14 +43,14 @@ public class EditJournalPost extends AppCompatActivity {
             public void onClick(View v) {
                 String title = editTitle.getText().toString();
                 String description = editDescription.getText().toString();
-                Journal.editJournalPost(index, title, description, uri);
+                Journal.editJournalPost(index, title, description, selectedImageUri);
 
                 Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                 startActivity(i);
             }
         });
 
-        editImage.setOnClickListener(new View.OnClickListener() {
+        selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK);
@@ -63,29 +64,17 @@ public class EditJournalPost extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri selectedImage = data.getData();
-                String filePath = getFilePathFromUri(selectedImage);
-                String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
+                Uri uri = data.getData();
+                String[] projection = {MediaStore.MediaColumns.DATA};
+                Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                if (file_extn.equals("img") || file_extn.equals("jpg") ||
-                        file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
-                    uri = selectedImage;
-                    this.editImage.setImageURI(selectedImage);
-                } else {
-                    new Toast(getApplicationContext()).makeText(getApplicationContext(),
-                            "Not the expected file format", Toast.LENGTH_LONG).show();
-                }
+                selectedImageUri = FilePathHelper.stuff(data,cursor);
+                selectedImage.setImageURI(selectedImageUri);
+            } else {
+                new Toast(getApplicationContext()).makeText(getApplicationContext(),
+                        "Not the expected file format", Toast.LENGTH_LONG).show();
             }
         }
     }
-
-    public String getFilePathFromUri(Uri uri) throws NullPointerException {
-        String[] projection = {MediaStore.MediaColumns.DATA};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-        cursor.moveToFirst();
-        String imagePath = cursor.getString(column_index);
-        cursor.close();
-        return imagePath;
-    }
 }
+
