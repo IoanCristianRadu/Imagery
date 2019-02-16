@@ -1,4 +1,4 @@
-package com.project.imagery;
+package com.project.imagery.journal;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.project.imagery.R;
 import com.project.imagery.classes.Helper;
 
 import java.util.ArrayList;
@@ -74,7 +75,6 @@ public class Journal extends AppCompatActivity {
 
     public static void createContentListReversed(){
         journalPostsReversed.clear();
-
         for(int index = 0; index< journalPosts.size(); index++){
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("listview_title", journalPostTitle[index]);

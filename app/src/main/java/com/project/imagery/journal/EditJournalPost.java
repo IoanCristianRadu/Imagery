@@ -1,4 +1,4 @@
-package com.project.imagery;
+package com.project.imagery.journal;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.project.imagery.tabhost.FrontPageTabHost;
+import com.project.imagery.R;
 
 public class EditJournalPost extends AppCompatActivity {
     Uri uri;

@@ -4,7 +4,7 @@
     android:id="@+id/activity_front_page_tab_host"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.imagery.FrontPageTabHost">
+    tools:context="com.project.imagery.tabhost.FrontPageTabHost">
 
     <TabHost
         android:layout_width="match_parent"

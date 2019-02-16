@@ -1,9 +1,14 @@
-package com.project.imagery;
+package com.project.imagery.tabhost;
 
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
+
+import com.project.imagery.R;
+import com.project.imagery.account.Login;
+import com.project.imagery.journal.Journal;
+import com.project.imagery.journal.NewPostActivity;
 
 public class FrontPageTabHost extends TabActivity {
 

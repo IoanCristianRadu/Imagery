@@ -1,7 +1,7 @@
 package com.project.imagery.classes;
 
 import java.util.HashMap;
-import static com.project.imagery.Journal.NUMBER_OF_POSTS;
+import static com.project.imagery.journal.Journal.NUMBER_OF_POSTS;
 
 public class Helper {
     HashMap<Integer,Integer> reverseIndex = new HashMap<>();
