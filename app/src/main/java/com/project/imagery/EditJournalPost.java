@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 public class EditJournalPost extends AppCompatActivity {
     Uri uri;
     ImageView editImage;
@@ -31,9 +29,9 @@ public class EditJournalPost extends AppCompatActivity {
         final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
         editImage = (ImageView) findViewById(R.id.editImage);
 
-        editTitle.setText(Journal.listviewTitle[index]);
-        editDescription.setText(Journal.listviewShortDescription[index]);
-        editImage.setImageURI(Journal.imageUris[index]);
+        editTitle.setText(Journal.journalPostTitle[index]);
+        editDescription.setText(Journal.JournalPostDescription[index]);
+        editImage.setImageURI(Journal.JournalPostImageUri[index]);
 
         Button edit = (Button) findViewById(R.id.editButton);
         edit.setOnClickListener(new View.OnClickListener() {
