@@ -55,6 +55,8 @@
             android:text="@string/Edit"
             android:layout_toRightOf="@id/editImageDescription"
             android:layout_below="@id/editImage"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="16dp"
+            android:layout_alignBaseline="@+id/editImageDescription"/>
+        
     </RelativeLayout>
 </ScrollView>
