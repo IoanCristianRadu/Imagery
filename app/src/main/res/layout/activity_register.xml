@@ -4,27 +4,26 @@
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.project.imagery.account.RegisterAccount"
-    android:orientation="vertical">
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.project.imagery.account.RegisterAccount">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="32dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="32dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/SIGN_UP"
             android:gravity="center_horizontal"
-            android:textSize="50dp"
-            android:textColor="#6a7dde">
-        </TextView>
+            android:text="@string/SIGN_UP"
+            android:textColor="#6a7dde"
+            android:textSize="50dp"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -33,11 +32,23 @@
         android:paddingTop="32dp">
 
         <EditText
+            android:id="@+id/ET_firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/first_name"
             android:gravity="center_horizontal"
-            android:id="@+id/ET_firstName"/>
+            android:hint="@string/first_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/ET_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/last_name" />
 
     </LinearLayout>
 
@@ -46,11 +57,11 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/ET_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/last_name"
             android:gravity="center_horizontal"
-            android:id="@+id/ET_lastName"/>
+            android:hint="@string/username" />
 
     </LinearLayout>
 
@@ -59,11 +70,11 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/ET_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username"
             android:gravity="center_horizontal"
-            android:id="@+id/ET_username"/>
+            android:hint="@string/password_signup" />
 
     </LinearLayout>
 
@@ -72,45 +83,32 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/ET_retypePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_signup"
             android:gravity="center_horizontal"
-            android:id="@+id/ET_password"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/retype_password"
-            android:gravity="center_horizontal"
-            android:id="@+id/ET_retypePassword"/>
+            android:hint="@string/retype_password" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="16dp"
-        android:gravity="center">
+        android:paddingTop="16dp">
 
         <Button
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/back"
-            android:id="@+id/btn_back" />
+            android:text="@string/back" />
 
         <Button
+            android:id="@+id/btn_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_account"
-            android:id="@+id/btn_create_account"/>
+            android:text="@string/create_account" />
 
     </LinearLayout>
 </LinearLayout>
