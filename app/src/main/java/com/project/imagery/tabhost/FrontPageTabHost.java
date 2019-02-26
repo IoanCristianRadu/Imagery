@@ -7,7 +7,7 @@ import android.widget.TabHost;
 
 import com.project.imagery.R;
 import com.project.imagery.account.Login;
-import com.project.imagery.journal.Journal;
+import com.project.imagery.journal.JournalActivity;
 import com.project.imagery.journal.NewPostActivity;
 
 public class FrontPageTabHost extends TabActivity {
@@ -25,8 +25,8 @@ public class FrontPageTabHost extends TabActivity {
         TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");
 
         //Setting tab name and the activity it opens
-        tab1.setIndicator("Journal");
-        tab1.setContent(new Intent(this, Journal.class));
+        tab1.setIndicator("JournalActivity");
+        tab1.setContent(new Intent(this, JournalActivity.class));
 
         tab2.setIndicator("New post");
         tab2.setContent(new Intent(this, NewPostActivity.class));

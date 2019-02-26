@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.project.imagery.classes.FilePathHelper;
+import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 import com.project.imagery.R;
 
@@ -47,7 +47,7 @@ public class NewPostActivity extends AppCompatActivity {
                 } else{
                     EditText title  = (EditText)findViewById(R.id.imageTitle);
                     EditText description = (EditText)findViewById(R.id.ET_description);
-                    Journal.addJournalPost(selectedImage,selectedImageUri,title.getText().toString(),description.getText().toString());
+                    JournalActivity.addJournalPost(selectedImage,selectedImageUri,title.getText().toString(),description.getText().toString());
                     Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                     startActivity(i);
                 }
@@ -63,7 +63,7 @@ public class NewPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.stuff(data,cursor);
+                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

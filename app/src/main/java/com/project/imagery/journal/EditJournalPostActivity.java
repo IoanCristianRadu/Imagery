@@ -13,11 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.project.imagery.classes.FilePathHelper;
+import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 import com.project.imagery.R;
 
-public class EditJournalPost extends AppCompatActivity {
+public class EditJournalPostActivity extends AppCompatActivity {
     Uri selectedImageUri;
     ImageView selectedImage;
 
@@ -33,9 +33,9 @@ public class EditJournalPost extends AppCompatActivity {
         final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
         selectedImage = (ImageView) findViewById(R.id.editImage);
 
-        editTitle.setText(Journal.journalPostTitle[index]);
-        editDescription.setText(Journal.JournalPostDescription[index]);
-        selectedImage.setImageURI(Journal.JournalPostImageUri[index]);
+        editTitle.setText(JournalActivity.journalPostTitle[index]);
+        editDescription.setText(JournalActivity.JournalPostDescription[index]);
+        selectedImage.setImageURI(JournalActivity.JournalPostImageUri[index]);
 
         Button edit = (Button) findViewById(R.id.editButton);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,7 @@ public class EditJournalPost extends AppCompatActivity {
             public void onClick(View v) {
                 String title = editTitle.getText().toString();
                 String description = editDescription.getText().toString();
-                Journal.editJournalPost(index, title, description, selectedImageUri);
+                JournalActivity.editJournalPost(index, title, description, selectedImageUri);
 
                 Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                 startActivity(i);
@@ -68,7 +68,7 @@ public class EditJournalPost extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.stuff(data,cursor);
+                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

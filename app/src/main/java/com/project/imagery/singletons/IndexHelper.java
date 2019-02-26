@@ -1,16 +1,16 @@
-package com.project.imagery.classes;
+package com.project.imagery.singletons;
 
 import java.util.HashMap;
 
-import static com.project.imagery.journal.Journal.NUMBER_OF_POSTS;
+import static com.project.imagery.journal.JournalActivity.NUMBER_OF_POSTS;
 
 public class IndexHelper {
     HashMap<Integer, Integer> reverseIndex = new HashMap<>();
 
-    private static final IndexHelper ourInstance = new IndexHelper();
+    private static final IndexHelper instance = new IndexHelper();
 
     public static IndexHelper getInstance() {
-        return ourInstance;
+        return instance;
     }
 
     private IndexHelper() {

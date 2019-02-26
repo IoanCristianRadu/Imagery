@@ -1,11 +1,11 @@
 package com.project.imagery;
 
-import com.project.imagery.classes.IndexHelper;
+import com.project.imagery.singletons.IndexHelper;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static com.project.imagery.journal.Journal.NUMBER_OF_POSTS;
+import static com.project.imagery.journal.JournalActivity.NUMBER_OF_POSTS;
 
 public class TestClasses {
     @Test
@@ -33,9 +33,9 @@ public class TestClasses {
         IndexHelper indexHelper = IndexHelper.getInstance();
         try{
             int position = indexHelper.getReverseIndex().get(NUMBER_OF_POSTS);
-            assertEquals(position,99);
+            assertFalse(true);
         } catch (NullPointerException e){
-            e.printStackTrace();
+            assertTrue(true);
         }
     }
 
@@ -44,9 +44,9 @@ public class TestClasses {
         IndexHelper indexHelper = IndexHelper.getInstance();
         try{
             int position = indexHelper.getReverseIndex().get(-1);
-            assertEquals(position,99);
+            assertFalse(true);
         } catch (NullPointerException e){
-            e.printStackTrace();
+            assertTrue(true);
         }
     }
 }

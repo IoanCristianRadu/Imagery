@@ -1,4 +1,4 @@
-package com.project.imagery.classes;
+package com.project.imagery.singletons;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,22 +15,22 @@ public class FilePathHelper {
     private FilePathHelper() {
     }
 
-    public static Uri stuff(Intent data,Cursor cursor){
+    public static Uri getUriFromImage(Intent data, Cursor cursor){
         Uri selectedImage = data.getData();
         String filePath = getFilePathFromUri(selectedImage, cursor);
-        String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
+        String fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1);
 
-        if (file_extn.equals("img") || file_extn.equals("jpg") ||
-                file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
+        if (fileExtension.equals("img") || fileExtension.equals("jpg") ||
+                fileExtension.equals("jpeg") || fileExtension.equals("gif") || fileExtension.equals("png")) {
             return selectedImage;
         }
         return null;
     }
 
     private static String getFilePathFromUri(Uri uri,Cursor cursor) throws NullPointerException {
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         cursor.moveToFirst();
-        String imagePath = cursor.getString(column_index);
+        String imagePath = cursor.getString(columnIndex);
         cursor.close();
         return imagePath;
     }

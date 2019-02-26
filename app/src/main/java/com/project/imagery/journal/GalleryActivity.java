@@ -2,23 +2,25 @@ package com.project.imagery.journal;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.project.imagery.R;
-import com.project.imagery.classes.IndexHelper;
+import com.project.imagery.singletons.IndexHelper;
+import com.project.imagery.tabhost.FrontPageTabHost;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Journal extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity {
     public final static int NUMBER_OF_POSTS = 100;
     static List<HashMap<String, String>> journalPosts = new ArrayList<HashMap<String, String>>();
     static List<HashMap<String, String>> journalPostsReversed = new ArrayList<HashMap<String, String>>();
@@ -30,21 +32,30 @@ public class Journal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal);
+        setContentView(R.layout.activity_gallery);
         createContentListReversed();
 
         String[] from = {"listview_image", "listview_title", "listview_description"};
         int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
         SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), journalPostsReversed, R.layout.journal_customlist, from, to);
-        ListView journalListView = (ListView) findViewById(R.id.list_view);
-        journalListView.setAdapter(simpleAdapter);
+        ListView galleryListView = (ListView) findViewById(R.id.gallery_view);
+        galleryListView.setAdapter(simpleAdapter);
+
+        Button edit = (Button) findViewById(R.id.addGalleryPost);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
+                startActivity(i);
+            }
+        });
 
         //Edit a post
-        journalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        galleryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent editPost = new Intent(getApplicationContext(), EditJournalPost.class);
+                Intent editPost = new Intent(getApplicationContext(), EditJournalPostActivity.class);
                 int reversedIndex = indexHelper.getReverseIndex(journalPosts.size()).get(position);
                 String number = "" + reversedIndex;
                 editPost.putExtra("index", number);
@@ -53,7 +64,7 @@ public class Journal extends AppCompatActivity {
         });
     }
 
-    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri,String title, String description){
+    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri, String title, String description){
         int index = journalPosts.size();
         journalPostTitle[index] = title;
         JournalPostImageUri[index] = selectedImageUri;
@@ -85,4 +96,3 @@ public class Journal extends AppCompatActivity {
         Collections.reverse(journalPostsReversed);
     }
 }
-

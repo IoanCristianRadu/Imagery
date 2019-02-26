@@ -13,7 +13,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="com.project.imagery.journal.EditJournalPost">
+        tools:context="com.project.imagery.journal.EditJournalPostActivity">
 
         <EditText
             android:id="@+id/editImageTitle"
