@@ -11,12 +11,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".gallery.GalleryNewPostActivity"></activity>
+        <activity android:name=".gallery.GalleryEditPostActivity" />
         <activity
-            android:name=".journal.GalleryActivity"
-            android:parentActivityName=".journal.JournalActivity"></activity>
+            android:name=".gallery.GalleryActivity"
+            android:parentActivityName=".journal.JournalActivity" />
         <activity
-            android:name=".journal.EditJournalPostActivity"
-            android:parentActivityName=".journal.JournalActivity"></activity>
+            android:name=".journal.JournalEditPostActivity"
+            android:parentActivityName=".journal.JournalActivity" />
         <activity android:name=".journal.JournalActivity" />
         <activity android:name=".account.Login" />
         <activity android:name=".account.RegisterAccount" />
@@ -27,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".journal.NewPostActivity" />
+        <activity android:name=".journal.JournalNewPostActivity" />
     </application>
 
 </manifest>

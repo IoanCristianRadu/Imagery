@@ -1,4 +1,4 @@
-package com.project.imagery.journal;
+package com.project.imagery.gallery;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,18 +13,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.project.imagery.R;
+import com.project.imagery.journal.JournalActivity;
 import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
-import com.project.imagery.R;
 
-public class EditJournalPostActivity extends AppCompatActivity {
+public class GalleryEditPostActivity extends AppCompatActivity {
     Uri selectedImageUri;
     ImageView selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_journal_post);
+        setContentView(R.layout.activity_gallery_edit_post);
 
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
@@ -33,9 +34,9 @@ public class EditJournalPostActivity extends AppCompatActivity {
         final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
         selectedImage = (ImageView) findViewById(R.id.editImage);
 
-        editTitle.setText(JournalActivity.journalPostTitle[index]);
-        editDescription.setText(JournalActivity.JournalPostDescription[index]);
-        selectedImage.setImageURI(JournalActivity.JournalPostImageUri[index]);
+        editTitle.setText(GalleryActivity.journalPostTitle[index]);
+        editDescription.setText(GalleryActivity.JournalPostDescription[index]);
+        selectedImage.setImageURI(GalleryActivity.JournalPostImageUri[index]);
 
         Button edit = (Button) findViewById(R.id.editButton);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +44,7 @@ public class EditJournalPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = editTitle.getText().toString();
                 String description = editDescription.getText().toString();
-                JournalActivity.editJournalPost(index, title, description, selectedImageUri);
+                GalleryActivity.editJournalPost(index, title, description, selectedImageUri);
 
                 Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                 startActivity(i);
@@ -77,4 +78,3 @@ public class EditJournalPostActivity extends AppCompatActivity {
         }
     }
 }
-

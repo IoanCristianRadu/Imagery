@@ -1,4 +1,4 @@
-package com.project.imagery.journal;
+package com.project.imagery.gallery;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.project.imagery.R;
+import com.project.imagery.journal.JournalEditPostActivity;
+import com.project.imagery.journal.JournalNewPostActivity;
 import com.project.imagery.singletons.IndexHelper;
-import com.project.imagery.tabhost.FrontPageTabHost;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,30 +41,29 @@ public class GalleryActivity extends AppCompatActivity {
         ListView galleryListView = (ListView) findViewById(R.id.gallery_view);
         galleryListView.setAdapter(simpleAdapter);
 
-        Button edit = (Button) findViewById(R.id.addGalleryPost);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
-                startActivity(i);
-            }
-        });
-
         //Edit a post
         galleryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent editPost = new Intent(getApplicationContext(), EditJournalPostActivity.class);
+                Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
                 int reversedIndex = indexHelper.getReverseIndex(journalPosts.size()).get(position);
                 String number = "" + reversedIndex;
                 editPost.putExtra("index", number);
                 startActivity(editPost);
             }
         });
-    }
 
-    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri, String title, String description){
+        Button addPost = (Button) findViewById(R.id.addGalleryPost);
+        addPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), JournalNewPostActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+    public static void addJournalPost(Uri selectedImageUri, String title, String description) {
         int index = journalPosts.size();
         journalPostTitle[index] = title;
         JournalPostImageUri[index] = selectedImageUri;
@@ -76,17 +75,17 @@ public class GalleryActivity extends AppCompatActivity {
         journalPosts.add(hm);
     }
 
-    public static void editJournalPost(int index, String title, String description, Uri uri){
+    public static void editJournalPost(int index, String title, String description, Uri uri) {
         journalPostTitle[index] = title;
         JournalPostDescription[index] = description;
-        if(uri != null){
+        if (uri != null) {
             JournalPostImageUri[index] = uri;
         }
     }
 
-    public static void createContentListReversed(){
+    public static void createContentListReversed() {
         journalPostsReversed.clear();
-        for(int index = 0; index< journalPosts.size(); index++){
+        for (int index = 0; index < journalPosts.size(); index++) {
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("listview_title", journalPostTitle[index]);
             hm.put("listview_description", JournalPostDescription[index]);

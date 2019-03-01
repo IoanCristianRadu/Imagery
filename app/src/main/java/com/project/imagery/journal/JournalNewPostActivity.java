@@ -17,14 +17,14 @@ import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 import com.project.imagery.R;
 
-public class NewPostActivity extends AppCompatActivity {
+public class JournalNewPostActivity extends AppCompatActivity {
     private ImageView selectedImage;
     Uri selectedImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
+        setContentView(R.layout.activity_journal_new_post);
 
         Button post = (Button) findViewById(R.id.btn_post);
         selectedImage = (ImageView) findViewById(R.id.stampImage);

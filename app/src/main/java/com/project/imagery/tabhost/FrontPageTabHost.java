@@ -8,7 +8,7 @@ import android.widget.TabHost;
 import com.project.imagery.R;
 import com.project.imagery.account.Login;
 import com.project.imagery.journal.JournalActivity;
-import com.project.imagery.journal.NewPostActivity;
+import com.project.imagery.journal.JournalNewPostActivity;
 
 public class FrontPageTabHost extends TabActivity {
 
@@ -29,7 +29,7 @@ public class FrontPageTabHost extends TabActivity {
         tab1.setContent(new Intent(this, JournalActivity.class));
 
         tab2.setIndicator("New post");
-        tab2.setContent(new Intent(this, NewPostActivity.class));
+        tab2.setContent(new Intent(this, JournalNewPostActivity.class));
 
         tab3.setIndicator("Account");
         tab3.setContent(new Intent(this, Login.class));
