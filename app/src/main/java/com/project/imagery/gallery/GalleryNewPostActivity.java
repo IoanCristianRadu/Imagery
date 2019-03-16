@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +26,7 @@ public class GalleryNewPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_new_post);
 
-        selectedImage = (ImageView) findViewById(R.id.GalleryStampImage);
+        selectedImage = findViewById(R.id.GalleryStampImage);
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,17 +36,17 @@ public class GalleryNewPostActivity extends AppCompatActivity {
             }
         });
 
-        Button post = (Button) findViewById(R.id.GalleryBtnPost);
+        Button post = findViewById(R.id.GalleryBtnPost);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(selectedImageUri == null){
+                if (selectedImageUri == null) {
                     new Toast(getApplicationContext()).makeText(getApplicationContext(),
                             "No image selected", Toast.LENGTH_LONG).show();
-                } else{
-                    EditText title  = (EditText)findViewById(R.id.GalleryImageTitle);
-                    EditText description = (EditText)findViewById(R.id.GalleryDescription);
-                    GalleryActivity.addJournalPost(selectedImageUri,title.getText().toString(),description.getText().toString());
+                } else {
+                    EditText title = findViewById(R.id.GalleryImageTitle);
+                    EditText description = findViewById(R.id.GalleryDescription);
+                    GalleryActivity.addJournalPost(selectedImageUri, title.getText().toString(), description.getText().toString());
                     Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                     startActivity(i);
                 }
@@ -62,7 +62,7 @@ public class GalleryNewPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
+                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

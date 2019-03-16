@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.imagery.R;
-import com.project.imagery.journal.JournalActivity;
 import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
 
@@ -30,15 +29,15 @@ public class GalleryEditPostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
 
-        final EditText editTitle = (EditText) findViewById(R.id.GalleryEditImageTitle);
-        final EditText editDescription = (EditText) findViewById(R.id.GalleryEditImageDescription);
-        selectedImage = (ImageView) findViewById(R.id.editImage);
+        final EditText editTitle = findViewById(R.id.GalleryEditImageTitle);
+        final EditText editDescription = findViewById(R.id.GalleryEditImageDescription);
+        selectedImage = findViewById(R.id.editImage);
 
         editTitle.setText(GalleryActivity.journalPostTitle[index]);
         editDescription.setText(GalleryActivity.JournalPostDescription[index]);
         selectedImage.setImageURI(GalleryActivity.JournalPostImageUri[index]);
 
-        Button edit = (Button) findViewById(R.id.GalleryEditButton);
+        Button edit = findViewById(R.id.GalleryEditButton);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

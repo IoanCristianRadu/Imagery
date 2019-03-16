@@ -4,18 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.project.imagery.R;
 import com.project.imagery.singletons.FilePathHelper;
 import com.project.imagery.tabhost.FrontPageTabHost;
-import com.project.imagery.R;
 
 public class JournalNewPostActivity extends AppCompatActivity {
     private ImageView selectedImage;

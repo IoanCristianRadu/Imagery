@@ -17,7 +17,7 @@ public class FrontPageTabHost extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_page_tab_host);
 
-        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        TabHost tabHost = findViewById(android.R.id.tabhost);
 
         //Making the tabs
         TabHost.TabSpec tab1 = tabHost.newTabSpec("First tab");
