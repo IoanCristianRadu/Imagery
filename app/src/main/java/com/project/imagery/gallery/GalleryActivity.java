@@ -28,38 +28,6 @@ public class GalleryActivity extends AppCompatActivity {
     static String[] JournalPostDescription = new String[NUMBER_OF_POSTS];
     IndexHelper indexHelper = IndexHelper.getInstance();
 
-    public static void addJournalPost(Uri selectedImageUri, String title, String description) {
-        int index = journalPosts.size();
-        journalPostTitle[index] = title;
-        JournalPostImageUri[index] = selectedImageUri;
-        JournalPostDescription[index] = description;
-        HashMap<String, String> hm = new HashMap<>();
-        hm.put("listview_title", journalPostTitle[index]);
-        hm.put("listview_description", JournalPostDescription[index]);
-        hm.put("listview_image", JournalPostImageUri[index].toString());
-        journalPosts.add(hm);
-    }
-
-    public static void createContentListReversed() {
-        journalPostsReversed.clear();
-        for (int index = 0; index < journalPosts.size(); index++) {
-            HashMap<String, String> hm = new HashMap<>();
-            hm.put("listview_title", journalPostTitle[index]);
-            hm.put("listview_description", JournalPostDescription[index]);
-            hm.put("listview_image", JournalPostImageUri[index].toString());
-            journalPostsReversed.add(hm);
-        }
-        Collections.reverse(journalPostsReversed);
-    }
-
-    public static void editJournalPost(int index, String title, String description, Uri uri) {
-        journalPostTitle[index] = title;
-        JournalPostDescription[index] = description;
-        if (uri != null) {
-            JournalPostImageUri[index] = uri;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,5 +61,37 @@ public class GalleryActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public static void addJournalPost(Uri selectedImageUri, String title, String description) {
+        int index = journalPosts.size();
+        journalPostTitle[index] = title;
+        JournalPostImageUri[index] = selectedImageUri;
+        JournalPostDescription[index] = description;
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put("listview_title", journalPostTitle[index]);
+        hm.put("listview_description", JournalPostDescription[index]);
+        hm.put("listview_image", JournalPostImageUri[index].toString());
+        journalPosts.add(hm);
+    }
+
+    public static void createContentListReversed() {
+        journalPostsReversed.clear();
+        for (int index = 0; index < journalPosts.size(); index++) {
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put("listview_title", journalPostTitle[index]);
+            hm.put("listview_description", JournalPostDescription[index]);
+            hm.put("listview_image", JournalPostImageUri[index].toString());
+            journalPostsReversed.add(hm);
+        }
+        Collections.reverse(journalPostsReversed);
+    }
+
+    public static void editJournalPost(int index, String title, String description, Uri uri) {
+        journalPostTitle[index] = title;
+        JournalPostDescription[index] = description;
+        if (uri != null) {
+            JournalPostImageUri[index] = uri;
+        }
     }
 }

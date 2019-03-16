@@ -63,6 +63,8 @@ public class JournalEditPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 JournalActivity.journalPostIsGallery[index] = true;
                 JournalActivity.galleryIndexCorrespondent.put(index, JournalActivity.galleryNumber++);
+                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
+                startActivity(i);
             }
         });
     }
