@@ -31,7 +31,7 @@ public class GalleryEditPostActivity extends AppCompatActivity {
 
         final EditText editTitle = findViewById(R.id.GalleryEditImageTitle);
         final EditText editDescription = findViewById(R.id.GalleryEditImageDescription);
-        selectedImage = findViewById(R.id.editImage);
+        selectedImage = findViewById(R.id.GalleryEditImage);
 
         editTitle.setText(GalleryActivity.journalPostTitle[index]);
         editDescription.setText(GalleryActivity.JournalPostDescription[index]);

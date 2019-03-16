@@ -45,7 +45,7 @@ public class GalleryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
+                Intent editPost = new Intent(getApplicationContext(), GalleryEditPostActivity.class);
                 int reversedIndex = indexHelper.getReverseIndex(journalPosts.size()).get(position);
                 String number = "" + reversedIndex;
                 editPost.putExtra("index", number);

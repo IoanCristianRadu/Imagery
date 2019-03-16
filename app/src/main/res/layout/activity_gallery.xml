@@ -10,9 +10,9 @@
         android:id="@+id/addGalleryPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:layout_marginRight="16dp"
-        android:text="+" />
+        android:text="Add Post" />
 
     <ListView
         android:id="@+id/gallery_view"
