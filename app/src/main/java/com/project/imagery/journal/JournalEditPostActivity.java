@@ -58,15 +58,19 @@ public class JournalEditPostActivity extends AppCompatActivity {
         });
 
         Button createGallery = findViewById(R.id.createGallery);
-        createGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JournalActivity.journalPostIsGallery[index] = true;
-                JournalActivity.galleryIndexCorrespondent.put(index, JournalActivity.galleryNumber++);
-                Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
-                startActivity(i);
-            }
-        });
+        if(JournalActivity.journalPostIsGallery[index]){
+            createGallery.setVisibility(View.INVISIBLE);
+        } else{
+            createGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    JournalActivity.journalPostIsGallery[index] = true;
+                    JournalActivity.galleryIndexCorrespondent.put(index, JournalActivity.galleryNumber++);
+                    Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

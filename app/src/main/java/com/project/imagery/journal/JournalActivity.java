@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.project.imagery.R;
 import com.project.imagery.gallery.GalleryActivity;
@@ -30,6 +31,53 @@ public class JournalActivity extends AppCompatActivity {
     static HashMap<Integer, Integer> galleryIndexCorrespondent = new HashMap<>();
     static Integer galleryNumber = 0;
     IndexHelper indexHelper = IndexHelper.getInstance();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_journal);
+        createContentListReversed();
+
+        String[] from = {"listview_image", "listview_title", "listview_description"};
+        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), journalPostsReversed, R.layout.journal_customlist, from, to);
+        ListView journalListView = findViewById(R.id.list_view);
+        journalListView.setAdapter(simpleAdapter);
+
+        //Edit a post
+        journalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (journalPostIsGallery[position]) {
+                    Intent galleryActivity = new Intent(getApplicationContext(), GalleryActivity.class);
+                    galleryActivity.putExtra("index", galleryIndexCorrespondent.get(getReversedIndex(position)));
+                    startActivity(galleryActivity);
+                } else {
+                    Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
+                    editPost.putExtra("index", String.valueOf(getReversedIndex(position)));
+                    startActivity(editPost);
+                }
+            }
+        });
+
+        journalListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if(journalPostIsGallery[position]){
+                    Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
+                    editPost.putExtra("index", String.valueOf(getReversedIndex(position)));
+                    startActivity(editPost);
+                    return true;
+                } else{
+                    Toast.makeText(JournalActivity.this, "Item is not a gallery", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            }
+        });
+    }
+    protected Integer getReversedIndex(int position) {
+        return indexHelper.getReverseIndex(journalPosts.size()).get(position);
+    }
 
     public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri, String title, String description) {
         int index = journalPosts.size();
@@ -62,40 +110,6 @@ public class JournalActivity extends AppCompatActivity {
         if (uri != null) {
             JournalPostImageUri[index] = uri;
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal);
-        createContentListReversed();
-
-        String[] from = {"listview_image", "listview_title", "listview_description"};
-        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), journalPostsReversed, R.layout.journal_customlist, from, to);
-        ListView journalListView = findViewById(R.id.list_view);
-        journalListView.setAdapter(simpleAdapter);
-
-        //Edit a post
-        journalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if (journalPostIsGallery[position]) {
-                    Intent galleryActivity = new Intent(getApplicationContext(), GalleryActivity.class);
-                    galleryActivity.putExtra("index", galleryIndexCorrespondent.get(getReversedIndex(position)));
-                    startActivity(galleryActivity);
-                } else {
-                    Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
-                    editPost.putExtra("index", String.valueOf(getReversedIndex(position)));
-                    startActivity(editPost);
-                }
-            }
-
-            private Integer getReversedIndex(int position) {
-                return indexHelper.getReverseIndex(journalPosts.size()).get(position);
-            }
-        });
     }
 }
 
