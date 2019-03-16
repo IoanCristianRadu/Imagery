@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.project.imagery.R;
+import com.project.imagery.gallery.GalleryActivity;
 import com.project.imagery.singletons.IndexHelper;
 
 import java.util.ArrayList;
@@ -25,6 +27,9 @@ public class JournalActivity extends AppCompatActivity {
     static String[] journalPostTitle = new String[NUMBER_OF_POSTS];
     static Uri[] JournalPostImageUri = new Uri[NUMBER_OF_POSTS];
     static String[] JournalPostDescription = new String[NUMBER_OF_POSTS];
+    static Boolean[] journalPostIsGallery = new Boolean[NUMBER_OF_POSTS];
+    static HashMap<Integer, Integer> galleryIndexCorrespondent = new HashMap<>();
+    static Integer galleryNumber = 0;
     IndexHelper indexHelper = IndexHelper.getInstance();
 
     @Override
@@ -42,18 +47,26 @@ public class JournalActivity extends AppCompatActivity {
         //Edit a post
         journalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
-                int reversedIndex = indexHelper.getReverseIndex(journalPosts.size()).get(position);
-                String number = "" + reversedIndex;
-                editPost.putExtra("index", number);
-                startActivity(editPost);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if (journalPostIsGallery[position]) {
+                    Intent galleryActivity = new Intent(getApplicationContext(), GalleryActivity.class);
+                    galleryActivity.putExtra("index", galleryIndexCorrespondent.get(getReversedIndex(position)));
+                    startActivity(galleryActivity);
+                } else {
+                    Intent editPost = new Intent(getApplicationContext(), JournalEditPostActivity.class);
+                    editPost.putExtra("index", String.valueOf(getReversedIndex(position)));
+                    startActivity(editPost);
+                }
+            }
+
+            public Integer getReversedIndex(int position) {
+                return indexHelper.getReverseIndex(journalPosts.size()).get(position);
             }
         });
     }
 
-    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri,String title, String description){
+    public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri, String title, String description) {
         int index = journalPosts.size();
         journalPostTitle[index] = title;
         JournalPostImageUri[index] = selectedImageUri;
@@ -62,20 +75,21 @@ public class JournalActivity extends AppCompatActivity {
         hm.put("listview_title", journalPostTitle[index]);
         hm.put("listview_description", JournalPostDescription[index]);
         hm.put("listview_image", JournalPostImageUri[index].toString());
+        journalPostIsGallery[index] = false;
         journalPosts.add(hm);
     }
 
-    public static void editJournalPost(int index, String title, String description, Uri uri){
+    public static void editJournalPost(int index, String title, String description, Uri uri) {
         journalPostTitle[index] = title;
         JournalPostDescription[index] = description;
-        if(uri != null){
+        if (uri != null) {
             JournalPostImageUri[index] = uri;
         }
     }
 
-    public static void createContentListReversed(){
+    public static void createContentListReversed() {
         journalPostsReversed.clear();
-        for(int index = 0; index< journalPosts.size(); index++){
+        for (int index = 0; index < journalPosts.size(); index++) {
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("listview_title", journalPostTitle[index]);
             hm.put("listview_description", JournalPostDescription[index]);

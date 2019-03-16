@@ -26,9 +26,7 @@ public class GalleryNewPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_new_post);
 
-        Button post = (Button) findViewById(R.id.btn_post);
-        selectedImage = (ImageView) findViewById(R.id.stampImage);
-
+        selectedImage = (ImageView) findViewById(R.id.GalleryStampImage);
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +36,7 @@ public class GalleryNewPostActivity extends AppCompatActivity {
             }
         });
 
+        Button post = (Button) findViewById(R.id.GalleryBtnPost);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,8 +44,8 @@ public class GalleryNewPostActivity extends AppCompatActivity {
                     new Toast(getApplicationContext()).makeText(getApplicationContext(),
                             "No image selected", Toast.LENGTH_LONG).show();
                 } else{
-                    EditText title  = (EditText)findViewById(R.id.imageTitle);
-                    EditText description = (EditText)findViewById(R.id.ET_description);
+                    EditText title  = (EditText)findViewById(R.id.GalleryImageTitle);
+                    EditText description = (EditText)findViewById(R.id.GalleryDescription);
                     GalleryActivity.addJournalPost(selectedImageUri,title.getText().toString(),description.getText().toString());
                     Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                     startActivity(i);

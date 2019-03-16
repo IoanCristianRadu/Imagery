@@ -58,7 +58,7 @@ public class GalleryActivity extends AppCompatActivity {
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), JournalNewPostActivity.class);
+                Intent i = new Intent(getApplicationContext(), GalleryNewPostActivity.class);
                 startActivity(i);
             }
         });

@@ -25,14 +25,12 @@ public class JournalEditPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_edit_post);
-
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
-
         final EditText editTitle = (EditText) findViewById(R.id.editImageTitle);
         final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
-        selectedImage = (ImageView) findViewById(R.id.editImage);
 
+        selectedImage = (ImageView) findViewById(R.id.editImage);
         editTitle.setText(JournalActivity.journalPostTitle[index]);
         editDescription.setText(JournalActivity.JournalPostDescription[index]);
         selectedImage.setImageURI(JournalActivity.JournalPostImageUri[index]);
@@ -58,6 +56,15 @@ public class JournalEditPostActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, 1);
             }
         });
+
+        Button createGallery = findViewById(R.id.createGallery);
+        createGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JournalActivity.journalPostIsGallery[index] = true;
+                JournalActivity.galleryIndexCorrespondent.put(index,JournalActivity.galleryNumber++);
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -68,7 +75,7 @@ public class JournalEditPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
+                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

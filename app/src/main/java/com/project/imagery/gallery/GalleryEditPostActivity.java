@@ -30,15 +30,15 @@ public class GalleryEditPostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
 
-        final EditText editTitle = (EditText) findViewById(R.id.editImageTitle);
-        final EditText editDescription = (EditText) findViewById(R.id.editImageDescription);
+        final EditText editTitle = (EditText) findViewById(R.id.GalleryEditImageTitle);
+        final EditText editDescription = (EditText) findViewById(R.id.GalleryEditImageDescription);
         selectedImage = (ImageView) findViewById(R.id.editImage);
 
         editTitle.setText(GalleryActivity.journalPostTitle[index]);
         editDescription.setText(GalleryActivity.JournalPostDescription[index]);
         selectedImage.setImageURI(GalleryActivity.JournalPostImageUri[index]);
 
-        Button edit = (Button) findViewById(R.id.editButton);
+        Button edit = (Button) findViewById(R.id.GalleryEditButton);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +69,7 @@ public class GalleryEditPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
+                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),
