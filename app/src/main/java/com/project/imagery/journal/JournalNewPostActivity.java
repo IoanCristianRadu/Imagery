@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.imagery.R;
-import com.project.imagery.singletons.FilePathHelper;
+import com.project.imagery.singletons.FilePathSingleton;
 import com.project.imagery.tabhost.FrontPageTabHost;
 
 public class JournalNewPostActivity extends AppCompatActivity {
@@ -23,11 +23,11 @@ public class JournalNewPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Button post = findViewById(R.id.btn_post);
+        selectedImage = findViewById(R.id.stampImage);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_new_post);
-
-        Button post = (Button) findViewById(R.id.btn_post);
-        selectedImage = (ImageView) findViewById(R.id.stampImage);
 
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,6 @@ public class JournalNewPostActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, 1);
             }
         });
-
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,8 +44,8 @@ public class JournalNewPostActivity extends AppCompatActivity {
                     new Toast(getApplicationContext()).makeText(getApplicationContext(),
                             "No image selected", Toast.LENGTH_LONG).show();
                 } else{
-                    EditText title  = (EditText)findViewById(R.id.imageTitle);
-                    EditText description = (EditText)findViewById(R.id.ET_description);
+                    EditText title = findViewById(R.id.imageTitle);
+                    EditText description = findViewById(R.id.ET_description);
                     JournalActivity.addJournalPost(selectedImage,selectedImageUri,title.getText().toString(),description.getText().toString());
                     Intent i = new Intent(getApplicationContext(), FrontPageTabHost.class);
                     startActivity(i);
@@ -63,7 +62,7 @@ public class JournalNewPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data,cursor);
+                selectedImageUri = FilePathSingleton.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

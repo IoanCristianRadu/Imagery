@@ -4,23 +4,23 @@ import java.util.HashMap;
 
 import static com.project.imagery.journal.JournalActivity.NUMBER_OF_POSTS;
 
-public class IndexHelper {
-    HashMap<Integer, Integer> reverseIndex = new HashMap<>();
+public class IndexSingleton {
+    private HashMap<Integer, Integer> reverseIndex = new HashMap<>();
 
-    private static final IndexHelper instance = new IndexHelper();
+    private static final IndexSingleton instance = new IndexSingleton();
 
-    public static IndexHelper getInstance() {
+    public static IndexSingleton getInstance() {
         return instance;
     }
 
-    private IndexHelper() {
+    private IndexSingleton() {
         for (int i = 0; i < NUMBER_OF_POSTS; i++) {
             reverseIndex.put(i, NUMBER_OF_POSTS - i - 1);
         }
     }
 
     public HashMap<Integer, Integer> getReverseIndex() {
-        return reverseIndex;
+            return reverseIndex;
     }
 
     public HashMap<Integer, Integer> getReverseIndex(int size) {

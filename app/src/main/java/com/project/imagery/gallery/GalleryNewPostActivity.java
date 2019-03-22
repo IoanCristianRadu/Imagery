@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.imagery.R;
-import com.project.imagery.singletons.FilePathHelper;
+import com.project.imagery.singletons.FilePathSingleton;
 import com.project.imagery.tabhost.FrontPageTabHost;
 
 public class GalleryNewPostActivity extends AppCompatActivity {
@@ -23,10 +23,12 @@ public class GalleryNewPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        selectedImage = findViewById(R.id.GalleryStampImage);
+        Button post = findViewById(R.id.GalleryBtnPost);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_new_post);
 
-        selectedImage = findViewById(R.id.GalleryStampImage);
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,8 +37,6 @@ public class GalleryNewPostActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, 1);
             }
         });
-
-        Button post = findViewById(R.id.GalleryBtnPost);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class GalleryNewPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
+                selectedImageUri = FilePathSingleton.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

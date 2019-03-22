@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.project.imagery.R;
 import com.project.imagery.gallery.GalleryActivity;
-import com.project.imagery.singletons.IndexHelper;
+import com.project.imagery.singletons.IndexSingleton;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,10 +30,12 @@ public class JournalActivity extends AppCompatActivity {
     static Boolean[] journalPostIsGallery = new Boolean[NUMBER_OF_POSTS];
     static HashMap<Integer, Integer> galleryIndexCorrespondent = new HashMap<>();
     static Integer galleryNumber = 0;
-    IndexHelper indexHelper = IndexHelper.getInstance();
+    IndexSingleton indexSingleton = IndexSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ListView journalListView = findViewById(R.id.list_view);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
         createContentListReversed();
@@ -41,10 +43,8 @@ public class JournalActivity extends AppCompatActivity {
         String[] from = {"listview_image", "listview_title", "listview_description"};
         int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
         SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), journalPostsReversed, R.layout.journal_customlist, from, to);
-        ListView journalListView = findViewById(R.id.list_view);
-        journalListView.setAdapter(simpleAdapter);
 
-        //Edit a post
+        journalListView.setAdapter(simpleAdapter);
         journalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,7 +59,6 @@ public class JournalActivity extends AppCompatActivity {
                 }
             }
         });
-
         journalListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,7 +75,7 @@ public class JournalActivity extends AppCompatActivity {
         });
     }
     protected Integer getReversedIndex(int position) {
-        return indexHelper.getReverseIndex(journalPosts.size()).get(position);
+        return indexSingleton.getReverseIndex(journalPosts.size()).get(position);
     }
 
     public static void addJournalPost(ImageView selectedImage, Uri selectedImageUri, String title, String description) {

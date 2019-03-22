@@ -5,14 +5,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-public class FilePathHelper {
-    private static final FilePathHelper ourInstance = new FilePathHelper();
+public class FilePathSingleton {
+    private static final FilePathSingleton ourInstance = new FilePathSingleton();
 
-    public static FilePathHelper getInstance() {
+    public static FilePathSingleton getInstance() {
         return ourInstance;
     }
 
-    private FilePathHelper() {
+    private FilePathSingleton() {
     }
 
     public static Uri getUriFromImage(Intent data, Cursor cursor){

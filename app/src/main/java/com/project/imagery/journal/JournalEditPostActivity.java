@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.imagery.R;
-import com.project.imagery.singletons.FilePathHelper;
+import com.project.imagery.singletons.FilePathSingleton;
 import com.project.imagery.tabhost.FrontPageTabHost;
 
 public class JournalEditPostActivity extends AppCompatActivity {
@@ -23,19 +23,21 @@ public class JournalEditPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal_edit_post);
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
         final EditText editTitle = findViewById(R.id.editImageTitle);
         final EditText editDescription = findViewById(R.id.editImageDescription);
-
         selectedImage = findViewById(R.id.editImage);
+        Button edit = findViewById(R.id.editButton);
+        Button createGallery = findViewById(R.id.createGallery);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_journal_edit_post);
+
         editTitle.setText(JournalActivity.journalPostTitle[index]);
         editDescription.setText(JournalActivity.JournalPostDescription[index]);
         selectedImage.setImageURI(JournalActivity.JournalPostImageUri[index]);
 
-        Button edit = findViewById(R.id.editButton);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +49,6 @@ public class JournalEditPostActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +58,6 @@ public class JournalEditPostActivity extends AppCompatActivity {
             }
         });
 
-        Button createGallery = findViewById(R.id.createGallery);
         if(JournalActivity.journalPostIsGallery[index]){
             createGallery.setVisibility(View.INVISIBLE);
         } else{
@@ -81,7 +81,7 @@ public class JournalEditPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
+                selectedImageUri = FilePathSingleton.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),

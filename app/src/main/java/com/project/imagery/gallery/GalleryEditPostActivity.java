@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.imagery.R;
-import com.project.imagery.singletons.FilePathHelper;
+import com.project.imagery.singletons.FilePathSingleton;
 import com.project.imagery.tabhost.FrontPageTabHost;
 
 public class GalleryEditPostActivity extends AppCompatActivity {
@@ -23,21 +23,20 @@ public class GalleryEditPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery_edit_post);
-
         Intent intent = getIntent();
         final int index = Integer.parseInt(intent.getStringExtra("index"));
-
         final EditText editTitle = findViewById(R.id.GalleryEditImageTitle);
         final EditText editDescription = findViewById(R.id.GalleryEditImageDescription);
         selectedImage = findViewById(R.id.GalleryEditImage);
+        Button edit = findViewById(R.id.GalleryEditButton);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gallery_edit_post);
 
         editTitle.setText(GalleryActivity.journalPostTitle[index]);
         editDescription.setText(GalleryActivity.JournalPostDescription[index]);
         selectedImage.setImageURI(GalleryActivity.JournalPostImageUri[index]);
 
-        Button edit = findViewById(R.id.GalleryEditButton);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +67,7 @@ public class GalleryEditPostActivity extends AppCompatActivity {
                 String[] projection = {MediaStore.MediaColumns.DATA};
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-                selectedImageUri = FilePathHelper.getUriFromImage(data, cursor);
+                selectedImageUri = FilePathSingleton.getUriFromImage(data, cursor);
                 selectedImage.setImageURI(selectedImageUri);
             } else {
                 new Toast(getApplicationContext()).makeText(getApplicationContext(),
